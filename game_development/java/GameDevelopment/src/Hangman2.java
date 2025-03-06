@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Hangman1 {
+public class Hangman2 {
     public static void main(String[] args) throws FileNotFoundException {
         List<String> words = new ArrayList<String>();
         Scanner scanner = new Scanner(
