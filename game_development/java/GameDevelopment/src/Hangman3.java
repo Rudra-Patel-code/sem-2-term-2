@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Hangman2 {
+public class Hangman3 {
     public static void main(String[] args) throws FileNotFoundException {
         List<String> words = new ArrayList<String>();
         Scanner scanner = new Scanner(
@@ -23,9 +23,47 @@ public class Hangman2 {
 
         List<Character> playerGuesses = new ArrayList<>();
 
+        int wrongCount = 0;
+
         while (true) {
+            System.out.println(" -------");
+            System.out.println(" |     |");
+            if (wrongCount >= 1) {
+                System.out.println(" O");
+            }
+            if (wrongCount >= 2) {
+                System.out.print("\\ ");
+                if (wrongCount >= 3) {
+                    System.out.println("/");
+                } else {
+                    System.out.println("");
+                }
+            }
+            if (wrongCount >= 4) {
+                System.out.println(" |");
+            }
+            if (wrongCount >= 5) {
+                System.out.print("/ ");
+                if (wrongCount >= 6) {
+                    System.out.println("\\");
+                } else {
+                    System.out.println("");
+                }
+            }
+            System.out.println("");
+            System.out.println("");
+
+            if (wrongCount >= 6) {
+                System.out.println("You Lose!");
+                System.err.println("The word was: " + word);
+                break;
+            }
+
             printWordState(word, playerGuesses);
-            getPlayerGuess(keyboard, playerGuesses, word);
+
+            if (!getPlayerGuess(keyboard, playerGuesses, word)) {
+                wrongCount++;
+            }
 
             if (printWordState(word, playerGuesses)) {
                 System.out.println("You Win!");
@@ -59,11 +97,12 @@ public class Hangman2 {
         return correctCount == word.length();
     }
 
-    private static void getPlayerGuess(Scanner keyboard, List<Character> playerGuesses, String word) {
+    private static boolean getPlayerGuess(Scanner keyboard, List<Character> playerGuesses, String word) {
         System.out.println("Please Enter a Letter: ");
         String letterGuess = keyboard.nextLine();
         playerGuesses.add(letterGuess.charAt(0));
 
+        return word.contains(letterGuess);
         // printWordState(word, playerGuesses);
 
     }
