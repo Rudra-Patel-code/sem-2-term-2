@@ -14,9 +14,9 @@ public class TableTwoWhileLoop {
 
         int i = start;
 
-        while (start <= end ? i <= end : i >= end) {
+        do {
             System.out.println(n + " * " + i + " = " + (n * i));
             i += start <= end ? 1 : -1;
-        }
+        } while (start <= end ? i <= end : i >= end);
     }
 }
