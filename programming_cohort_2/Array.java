@@ -12,7 +12,6 @@ public class Array {
         int n = array.length;
         int i = 0;
         do {
-
             System.out.print("Enter the value of the item " + (i + 1) + " : ");
 
             array[i] = sc.nextDouble();
